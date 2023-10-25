@@ -37,13 +37,14 @@ describe("<Logo />", () => {
     });
   });
 
-  describe(" when hide on mobile", () => {
-    it("should render a bigger logo without text", () => {
-      renderWithTheme(<Logo hideOnMobile={false} />);
-
-      expect(screen.getByLabelText(/Won Games/i).parentElement).toHaveStyle({
-        width: "11rem",
-      });
-    });
+  it("should render a bigger logo without text if hideOnMobile", () => {
+    renderWithTheme(<Logo hideOnMobile />);
+    expect(screen.getByLabelText(/Won Games/i).parentElement).toHaveStyleRule(
+      "width",
+      "5.8rem",
+      {
+        media: "(max-width: 768px)",
+      },
+    );
   });
 });
